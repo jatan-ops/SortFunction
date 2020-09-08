@@ -2,35 +2,39 @@ import java.util.Arrays;
 
 public class SortFunction {
     public static void main(String[] args) {
-        int[] intArray = {20,30,40,147,9,6,1050,400,6};
+        long start  =System.currentTimeMillis();
+
+        Integer[] intArray = {20000,30,40,1407,9,600,1050,400,8006};
         sort(intArray);
+
+        long end  = System.currentTimeMillis();
+        System.out.println((end-start) + " : milliseconds");
     }
 
-    private static void sort(int[] intArray) {
-        int i=0;
+    private static void sort(Integer[] intArray) {
+
         int[] newArray = new int[intArray.length];
 
-        newArray[i] = largestNumber(intArray);
-        System.out.println(Arrays.toString(newArray));
-        //for (int i = 0; i<newArray.length; i++)
-       /* int j = largestNumber(intArray);
-        intArray[j] = 0;*/
+        for (int i = 0; i<newArray.length; i++)
+            newArray[i] = largestNumber(intArray);
+
+        System.out.println("New Array :  "+Arrays.toString(newArray));
 
     }
 
-    private static int largestNumber(int[] intArray) {
+    private static Integer largestNumber(Integer[] intArray) {
 
         int largestNumber = intArray[0];
-        int i;
 
-        for (i = 0; i < intArray.length; i++) {
-
-            if (intArray[i] > largestNumber)
-                largestNumber=intArray[i];
-
+        //O(N)
+        for (Integer integer : intArray) {
+            if (integer > largestNumber)
+                largestNumber = integer;
         }
-        System.out.println("largestNumber: "+largestNumber+"  "+"i: "+i);
-        System.out.println(Arrays.toString(intArray));
+
+        int index = Arrays.asList(intArray).indexOf(largestNumber);
+        intArray[index] = 0;
+
         return largestNumber;
     }
 }
